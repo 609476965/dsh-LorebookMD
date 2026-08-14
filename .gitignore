@@ -1,4 +1,6 @@
 node_modules/
-lib/
+# 发布包必须内置 lib/client.js（install.cmd 直接复制，无需本地构建环境）；
+# lib/index.js 是 node 半的发布备选产物，不随仓库提交。
+lib/index.js
 *.tsbuildinfo
 *.log

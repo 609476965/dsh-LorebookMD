@@ -1,6 +1,6 @@
 # dsh-LorebookMD — DSH 世界书驱动的小说创作插件
 
-一个面向 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（DSH）的正式插件：导入酒馆（SillyTavern/TavernAI）角色卡与世界书，落地为**本地 Markdown 设定文档**，激活创作模式后**根据用户输入、参考世界书创作小说**。
+一个面向 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（DSH）的插件：导入酒馆（SillyTavern/TavernAI）角色卡与世界书，落地为**本地 Markdown 设定文档**，激活创作模式后**根据用户输入、参考世界书创作小说**。
 
 > 说明：本插件只管理你自己提供的设定文本；工程内不内置任何"破限/越狱"提示词内容。
 
@@ -19,16 +19,16 @@
 | | 进入创作（激活「·创作」） | 世界书模式（激活「·世界书」） |
 | --- | --- | --- |
 | **输出形态** | **小说正文**：第三人称连贯叙述，细节符合设定风格，直接输出正文、不复述设定 | **对话/角色扮演回应**：以世界内角色身份与你互动、推进剧情 |
-| **设定使用** | 全文注入，模型自觉参考 | 全文注入 + **关键词自动触发**：提到触发词（如"海关""入籍"）时对应条目当场注入 |
+| **设定使用** | 全文注入，模型自觉参考 | 全文注入 + **关键词自动触发**：提到触发词时对应条目当场注入 |
 | **交互方式** | 你给场景/情节/人物，模型创作；继续给 → 续写 | 你以第一人称参与，模型以角色回应 |
 | **典型指令** | "写一段……"、"描写……的过程" | "我是……，然后呢？"、"把名单给我看看" |
 | **适合** | 写小说、场景描写、剧情创作 | 沉浸式角色扮演、互动推演 |
 
-想"写小说"用「进入创作」，想"扮演/对话」用「世界书模式」；两者可随时切换，停用后回到正常会话。
+想"写小说"用「进入创作」，想"扮演/对话"用「世界书模式」；两者可随时切换，停用后回到正常会话。
 
 ## 安装（两步）
 
-1. **一键安装**：双击 `install.cmd`（或 `powershell -ExecutionPolicy Bypass -File install.ps1`）。脚本会自动构建浏览器端 bundle（若缺失）并把插件复制到 DSH profile 的 `node_modules`。
+1. **一键安装**：双击 `install.cmd`（或 `powershell -ExecutionPolicy Bypass -File install.ps1`）。脚本把插件复制到 DSH profile 的 `node_modules`（发布包已内置构建产物，无需本地构建环境）。
 
 2. **启动**（二选一）：
    - **临时挂载**：双击 `start-dsh-plugin.cmd`（以 `--patch` 加载 `cordis.yml`）
@@ -36,9 +36,7 @@
 
 打开 `http://127.0.0.1:3080`：设置 →「世界书创作」即可使用；终端应打印 `[prompt-manager] ready: …`。
 
-> 安装原理：正常安装 = 把插件包放进 DSH profile 的 `node_modules`。插件源码的 `@deepseek-ai/*` 依赖由 **profile 运行时直接解析**（DSH 自带完整运行时包），无需额外依赖链。改代码后重新运行 `install.cmd` 即完成更新（自动重建 bundle 并覆盖安装）。
-
-> 为什么用包名挂载：DSH 的 client 插件由 `dsh-client-modules` 扫描 loader entry 的 package.json 发现 `dsh.client` 声明（从 profile 的 config tree baseUrl 按模块名解析），因此 entry 必须写成可解析的包名 `dsh-LorebookMD`（绝对路径 entry 不会被识别为 client 包），且浏览器 bundle 必须已构建。
+> 安装原理：正常安装 = 把插件包放进 DSH profile 的 `node_modules`。插件源码的 `@deepseek-ai/*` 依赖由 profile 运行时直接解析（DSH 自带完整运行时包），无需额外依赖链。更新插件：覆盖安装新版本后重启 DSH 即可。
 
 ## 数据位置
 
@@ -50,39 +48,9 @@
 
 ## 开发
 
-> 运行/测试源码前，先执行 `node .dsh-tools/install-deps.mjs` 重建一次 node_modules 依赖链（仅**开发**需要：本目录在仓库外，测试与 tsc 需要可解析的 `@deepseek-ai/*`；**安装到 DSH 不需要**，运行时由 profile 解析）。
-
 ```powershell
-node .dsh-tools/install-deps.mjs   # 首次开发前：重建 node_modules junction 依赖链
-npm test          # 运行 tests/（Node >= 22.18 内置类型剥离；沙箱内请逐文件执行）
+node .dsh-tools/install-deps.mjs   # 首次开发前：重建 node_modules 依赖链（仅开发需要）
+npm run bundle    # 构建 lib/client.js（改代码后需重新构建并随提交更新）
+npm test          # 运行测试（Node >= 22.18 内置类型剥离）
 npm run typecheck # tsc --noEmit 严格检查
-npm run bundle    # 构建 lib/client.js（改 client 代码后需重新构建）
 ```
-
-依赖解析：工程位于 DSH 仓库之外，`node_modules/` 下用 junction 指回本地 DSH 仓库已构建包（`@deepseek-ai/cordis`、`dsh-tools`、`dsh-llm`、`dsh-client-*`、`react` 等），传递依赖沿真实路径回落，无需联网安装。损坏时运行 `install-deps.mjs` 或 `pnpm install`（package.json 的 `file:` 依赖已声明相同指向）。
-
-## 目录结构
-
-```
-dsh-LorebookMD/
-├── package.json          # 插件清单：node 半入口 + dsh.client manifest（浏览器半）
-├── tsconfig.json         # 严格 TS（NodeNext + erasableSyntaxOnly + react-jsx）
-├── tsdown.config.ts      # 构建配置：复用 DSH 仓库的 clientBundle 预设
-├── cordis.yml            # DSH Web overlay（--patch 挂载，entry: dsh-LorebookMD）
-├── install.cmd / install.ps1  # 一键安装到 DSH profile（自动构建 + 复制）
-├── start-dsh-plugin.cmd  # 一键以 --patch 启动 DSH Web GUI
-├── .dsh-tools/           # tsdown shim + install-deps.mjs（依赖链重建）
-├── lib/                  # 构建产物：client.js（浏览器 bundle）、index.js（node）
-├── src/
-│   ├── index.ts          # host 半：创作模式 + 世界书触发 + /prompt-manager/api
-│   ├── preset-repo.ts    # 预设仓库（纯逻辑，可单元测试）
-│   ├── tavern.ts         # 角色卡/世界书解析与文档转换
-│   └── client/           # 浏览器半：设置分区「世界书创作」
-└── tests/                # plugin / tavern / integration / api / world
-```
-
-## 更多资料
-
-- 插件形态/工具/配置：`deepseek-harness/docs/user/develop/basic/{index,tool,config}.md`
-- 设置分区 slot：`packages/client/ui-settings/src/client/contract/slots.ts`（`settings.section`）
-- client 插件装载：`.agents/notes/implemented/architecture/2026-07-23-client-plugin-loading-model.zh.md`
