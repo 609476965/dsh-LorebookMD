@@ -34,16 +34,27 @@
 帮我安装这个插件https://github.com/609476965/dsh-LorebookMD
 ```
 
+### 从 npm 安装（推荐）
+
+```powershell
+dsh plugin --profile web add dsh-lorebookmd
+```
+
+发布包已内置构建产物（`lib/`）；`dsh plugin` 会自动把本包加入 `dsh.profile.bundles` 并应用 `cordis.patch.yml`，之后用 `start-dsh.cmd` 正常启动即可，无需 `--patch`。
+
+> 本地试装（未发布时）：`npm pack` 生成 `dsh-lorebookmd-1.0.0.tgz`，然后 `dsh plugin --profile web add ./dsh-lorebookmd-1.0.0.tgz`。
+
 ### 手动安装
+
 1. **一键安装**：双击 `install.cmd`（或 `powershell -ExecutionPolicy Bypass -File install.ps1`）。脚本把插件复制到 DSH profile 的 `node_modules`（发布包已内置构建产物，无需本地构建环境）。
 
 2. **挂载**（二选一）：
    - **自动挂载（推荐）**：把 `dsh-lorebookmd` 追加到 `~\.dsh\profiles\web\package.json` 的 `dsh.profile.bundles` 数组，之后用 `start-dsh.cmd` 正常启动即可（DSH 会自动应用插件的 `cordis.patch.yml`，无需 `--patch`）
    - **临时挂载**：双击 `start-dsh-plugin.cmd`（以 `--patch` 加载 `cordis.yml`）
 
-> 两种挂载方式勿同时使用（会重复挂载）。打开 `http://127.0.0.1:3080`：设置 →「世界书创作」即可使用；终端应打印 `[prompt-manager] ready: …`。
+> 以上挂载方式任选其一，勿同时使用（会重复挂载）。打开 `http://127.0.0.1:3080`：设置 →「世界书创作」即可使用；终端应打印 `[prompt-manager] ready: …`。
 
-> 安装原理：正常安装 = 把插件包放进 DSH profile 的 `node_modules`。插件源码的 `@deepseek-ai/*` 依赖由 profile 运行时直接解析（DSH 自带完整运行时包），无需额外依赖链。更新插件：覆盖安装新版本后重启 DSH 即可。
+> 安装原理：正常安装 = 把插件包放进 DSH profile 的 `node_modules`。插件源码的 `@deepseek-ai/*` 依赖由 profile 运行时直接解析（DSH 自带完整运行时包），无需额外依赖链。更新插件：升级安装新版本后重启 DSH 即可。
 
 ## 数据位置
 
