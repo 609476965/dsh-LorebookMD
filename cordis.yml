@@ -1,4 +1,4 @@
-# dsh-LorebookMD — DSH Web overlay（patch 文件），把插件挂载进 DSH。
+# dsh-lorebookmd — DSH Web overlay（patch 文件），把插件挂载进 DSH。
 #
 # 使用方法（path 必须为绝对路径）：
 #   node "C:\Users\yuyon\.dsh\profiles\node_modules\@deepseek-ai\dsh\lib\bin.js" ^
@@ -6,8 +6,8 @@
 #
 # 也可以直接双击运行本目录下的 start-dsh-plugin.cmd。
 #
-# 注意：entry 用包名 `dsh-LorebookMD`（已安装到
-# `~/.dsh/profiles/web/node_modules/dsh-LorebookMD`），这样 host 装载 node 半，
+# 注意：entry 用包名 `dsh-lorebookmd`（已安装到
+# `~/.dsh/profiles/web/node_modules/dsh-lorebookmd`），这样 host 装载 node 半，
 # 同时 dsh-client-modules 能扫描到 dsh.client 声明、供给浏览器端 bundle
 # （lib/client.js，构建产物），在 设置 → 世界书创作 中提供可视化管理。
 #
@@ -16,7 +16,7 @@
 #   - 对话中：prompt_import_tavern / prompt_import_world 等工具同样可用
 - insert:
     - id: prompt-manager
-      name: 'dsh-LorebookMD'
+      name: 'dsh-lorebookmd'
       config:
         dataDir: '~/.dsh/dsh-LorebookMD'
         sectionName: 'prompt-manager:active'

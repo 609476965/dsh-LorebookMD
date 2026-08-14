@@ -10,7 +10,7 @@ $ErrorActionPreference = 'Stop'
 
 $src = $PSScriptRoot
 $profileNm = Join-Path $env:USERPROFILE '.dsh\profiles\web\node_modules'
-$dest = Join-Path $profileNm 'dsh-LorebookMD'
+$dest = Join-Path $profileNm 'dsh-lorebookmd'
 $bundle = Join-Path $src 'lib\client.js'
 
 # --- 1. ensure the browser bundle exists ---

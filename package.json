@@ -1,21 +1,37 @@
 {
-  "name": "dsh-LorebookMD",
+  "name": "dsh-lorebookmd",
   "version": "1.0.0",
-  "private": true,
-  "description": "DSH lorebook-driven fiction writer: import Tavern/SillyTavern character cards & world books, save local Markdown settings, and generate novel prose referencing the world settings.",
+  "description": "DSH lorebook-driven fiction writer plugin: import Tavern/SillyTavern character cards & world books, save local Markdown lore documents, and generate novel prose with the world settings as reference.",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "plugin",
+    "lorebook",
+    "world-info",
+    "sillytavern",
+    "tavern",
+    "novel",
+    "fiction"
+  ],
+  "license": "MIT",
   "type": "module",
   "main": "lib/index.js",
-  "types": "src/index.ts",
   "exports": {
-    ".": {
-      "types": "./src/index.ts",
-      "default": "./lib/index.js"
-    },
-    "./client": {
-      "default": "./lib/client.js"
-    },
-    "./src/*": "./src/*",
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
     "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml"
+  ],
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "bundle": "node ./.dsh-tools/tsdown/run.mjs",
+    "typecheck": "node node_modules/typescript/bin/tsc --noEmit",
+    "test": "node --test tests/"
   },
   "dsh": {
     "client": {
@@ -27,41 +43,5 @@
     "bundle": {
       "patch": "./cordis.patch.yml"
     }
-  },
-  "files": [
-    "src",
-    "lib/client.js"
-  ],
-  "engines": {
-    "node": ">=22.18"
-  },
-  "scripts": {
-    "typecheck": "node node_modules/typescript/bin/tsc --noEmit",
-    "test": "node --test tests/",
-    "bundle": "node ./.dsh-tools/tsdown/run.mjs"
-  },
-  "peerDependencies": {
-    "@deepseek-ai/cordis": "file:../../deepseek-harness/vendor/cordis",
-    "@deepseek-ai/dsh-client-runtime": "file:../../deepseek-harness/packages/client/runtime",
-    "@deepseek-ai/dsh-client-ui-settings": "file:../../deepseek-harness/packages/client/ui-settings",
-    "@deepseek-ai/dsh-client-ui-slots": "file:../../deepseek-harness/packages/client/ui-slots",
-    "@deepseek-ai/dsh-home-paths": "file:../../deepseek-harness/packages/util/home-paths",
-    "@deepseek-ai/dsh-tools": "file:../../deepseek-harness/packages/core/tools",
-    "@deepseek-ai/schemastery": "file:../../deepseek-harness/vendor/schemastery",
-    "react": "^18.2.0"
-  },
-  "dependencies": {
-    "@deepseek-ai/cordis": "file:../../deepseek-harness/vendor/cordis",
-    "@deepseek-ai/dsh-home-paths": "file:../../deepseek-harness/packages/util/home-paths",
-    "@deepseek-ai/dsh-llm": "file:../../deepseek-harness/packages/llm/llm",
-    "@deepseek-ai/dsh-tools": "file:../../deepseek-harness/packages/core/tools",
-    "@deepseek-ai/schemastery": "file:../../deepseek-harness/vendor/schemastery"
-  },
-  "devDependencies": {
-    "@deepseek-ai/dsh-agent": "file:../../deepseek-harness/packages/core/agent",
-    "@types/node": "file:../../deepseek-harness/node_modules/@types/node",
-    "@types/react": "file:../../deepseek-harness/node_modules/.pnpm/@types+react@18.3.31/node_modules/@types/react",
-    "react": "file:../../deepseek-harness/node_modules/.pnpm/react@18.3.1/node_modules/react",
-    "typescript": "file:../../deepseek-harness/node_modules/typescript"
   }
 }
