@@ -1,0 +1,18 @@
+# dsh-LorebookMD — bundle patch 层（供 `dsh.profile.bundles` 自动挂载）。
+#
+# 本文件由 package.json 的 `dsh.bundle.patch` 声明引用：把本包加入 profile
+# 的 bundle 层（`dsh plugin --profile web add dsh-LorebookMD`，或手动加入
+# profile package.json 的 dsh.profile.bundles）后，DSH 启动时会自动应用
+# 本 patch，无需 --patch 手动挂载。
+#
+# 若使用 --patch 挂载（start-dsh-plugin.cmd），请用 cordis.yml，二者勿同时使用。
+- insert:
+    - id: prompt-manager
+      name: 'dsh-LorebookMD'
+      config:
+        dataDir: '~/.dsh/dsh-LorebookMD'
+        sectionName: 'prompt-manager:active'
+        sectionOrder: 95
+        enableTools: true
+        watchFile: true
+        worldTrigger: true
