@@ -1,0 +1,203 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 4px 0 24px;
+}
+
+.heading {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.intro {
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.75;
+  line-height: 1.5;
+}
+
+.error {
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: rgba(220, 60, 60, 0.12);
+  color: #d04848;
+  font-size: 13px;
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  border: 1px solid rgba(128, 128, 128, 0.25);
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.itemHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.itemName {
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.activeBadge {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: rgba(80, 160, 90, 0.18);
+  color: #3c9a4e;
+}
+
+.worldBadge {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: rgba(70, 130, 200, 0.18);
+  color: #3a7cc0;
+}
+
+.itemDescription {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.itemActions {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.editor {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px dashed rgba(128, 128, 128, 0.3);
+  padding-top: 8px;
+}
+
+.card {
+  border: 1px solid rgba(128, 128, 128, 0.25);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.field input,
+.field textarea {
+  font: inherit;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(128, 128, 128, 0.35);
+  background: rgba(128, 128, 128, 0.08);
+  color: inherit;
+}
+
+.field textarea {
+  resize: vertical;
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.button,
+.buttonPrimary,
+.buttonDanger {
+  font: inherit;
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(128, 128, 128, 0.35);
+  background: rgba(128, 128, 128, 0.1);
+  color: inherit;
+  cursor: pointer;
+}
+
+.buttonPrimary {
+  border-color: rgba(70, 130, 200, 0.55);
+  background: rgba(70, 130, 200, 0.18);
+  color: #6aa8e0;
+}
+
+.button:hover,
+.buttonPrimary:hover,
+.buttonDanger:hover {
+  background: rgba(128, 128, 128, 0.2);
+}
+
+.buttonPrimary:hover {
+  background: rgba(70, 130, 200, 0.28);
+}
+
+.button:disabled,
+.buttonPrimary:disabled,
+.buttonDanger:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.buttonDanger {
+  border-color: rgba(220, 60, 60, 0.45);
+  color: #d04848;
+}
+
+.empty {
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+.hint {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.65;
+  line-height: 1.5;
+}
