@@ -4,12 +4,12 @@
   "private": true,
   "description": "DSH lorebook-driven fiction writer: import Tavern/SillyTavern character cards & world books, save local Markdown settings, and generate novel prose referencing the world settings.",
   "type": "module",
-  "main": "src/index.ts",
+  "main": "lib/index.js",
   "types": "src/index.ts",
   "exports": {
     ".": {
       "types": "./src/index.ts",
-      "default": "./src/index.ts"
+      "default": "./lib/index.js"
     },
     "./client": {
       "default": "./lib/client.js"

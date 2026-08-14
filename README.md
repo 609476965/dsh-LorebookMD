@@ -28,6 +28,13 @@
 
 ## 安装（两步）
 
+###
+跟dsh说
+``` 
+帮我安装这个插件https://github.com/609476965/dsh-LorebookMD
+```
+
+### 手动安装
 1. **一键安装**：双击 `install.cmd`（或 `powershell -ExecutionPolicy Bypass -File install.ps1`）。脚本把插件复制到 DSH profile 的 `node_modules`（发布包已内置构建产物，无需本地构建环境）。
 
 2. **挂载**（二选一）：
