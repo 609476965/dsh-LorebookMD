@@ -2,7 +2,7 @@
  * prompt-manager — DSH 提示词预设管理器插件。
  *
  * 集中管理提示词预设（增删改查），并把当前激活的预设注入系统提示词：
- * - 预设数据存于 JSON 文件（默认 `~/.dsh/my-plugin/presets.json`，`Config.dataDir` 可覆盖）
+ * - 预设数据存于 JSON 文件（默认 `~/.dsh/dsh-LorebookMD/presets.json`，`Config.dataDir` 可覆盖）
  * - `systemPrompt.section()` 的 text 用求值函数读取当前激活预设——
  *   切换/修改后对下一轮对话立即生效，无需重新加载插件
  * - 提供 prompt_preset_* 工具，对话中随时：列出 / 激活 / 停用 / 保存(新建或修改) / 删除
@@ -42,7 +42,7 @@ export const name = 'prompt-manager'
 export const inject = ['tools', 'systemPrompt', 'webServer']
 
 export interface Config {
-  /** 预设数据目录（支持 `~` 展开；默认 `~/.dsh/my-plugin`）。 */
+  /** 预设数据目录（支持 `~` 展开；默认 `~/.dsh/dsh-LorebookMD`）。 */
   dataDir: string
   /** 系统提示词 section 名（唯一，勿与其他插件冲突）。 */
   sectionName: string
@@ -57,7 +57,7 @@ export interface Config {
 }
 
 export const Config: Schema<Config> = Schema.object({
-  dataDir: Schema.string().default(dshHomePath('my-plugin')),
+  dataDir: Schema.string().default(dshHomePath('dsh-LorebookMD')),
   sectionName: Schema.string().default('prompt-manager:active'),
   sectionOrder: Schema.number().default(95),
   enableTools: Schema.boolean().default(true),

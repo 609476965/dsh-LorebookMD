@@ -42,9 +42,9 @@
 
 | 数据 | 路径 |
 | --- | --- |
-| 预设（含创作/世界书预设正文） | `~/.dsh/my-plugin/presets.json` |
-| 世界书条目数据（关键词触发用） | `~/.dsh/my-plugin/worldbooks.json` |
-| 本地设定文档（可编辑） | `~/.dsh/my-plugin/worldbooks/<名>.md` |
+| 预设（含创作/世界书预设正文） | `~/.dsh/dsh-LorebookMD/presets.json` |
+| 世界书条目数据（关键词触发用） | `~/.dsh/dsh-LorebookMD/worldbooks.json` |
+| 本地设定文档（可编辑） | `~/.dsh/dsh-LorebookMD/worldbooks/<名>.md` |
 
 ## 开发
 

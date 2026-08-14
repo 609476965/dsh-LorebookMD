@@ -18,7 +18,7 @@
     - id: prompt-manager
       name: 'dsh-LorebookMD'
       config:
-        dataDir: '~/.dsh/my-plugin'
+        dataDir: '~/.dsh/dsh-LorebookMD'
         sectionName: 'prompt-manager:active'
         sectionOrder: 95
         enableTools: true
